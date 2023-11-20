@@ -1,86 +1,66 @@
 // Add your JavaScript here
-// Get the elements
-const buttons = document.querySelectorAll(".button");
-const input = document.querySelector(".display");
+const buttons = document.querySelectorAll('.button');
+const input = document.querySelector('.display');
 
-let clickedBtn;
-let clickedActBtn;
-let numberBefore;
+let calculation;
 let result;
+
+// initialize the input.value
+input.value = 0;
 
 // When the button is clicked
 buttons.forEach((element) => {
-  element.addEventListener("click", () => {
-    // identify which button was clicked
-    const buttonAction = element.dataset.action;
-    // if the number is clicked,
-    if (checkIfNumber0(buttonAction)) {
-      input.value += Number(buttonAction);
-      // if the last button was "+",
-      if (clickedBtn == "/") {
-        input.value = Number(buttonAction);
-      } else if(clickedBtn == "*"){
-        input.value = Number(buttonAction);
-      } else if(clickedBtn == "-"){
-        input.value = Number(buttonAction);
-      } else if(clickedBtn == "+"){
-        input.value = Number(buttonAction);
-      }
-    } else if (buttonAction == "ac") {
-      // clear the input
-      input.value = "";
-      // if the DEL is clicked,
-    } else if (buttonAction == "del") {
-      // delete the input value one by one
-      input.value = input.value.slice(0, -1);
-    } else if (buttonAction == "%") {
-      input.value = input.value / 100;
-    } else if (buttonAction == ".") {
-      // how to add a decimal point?
-      if (checkIfNumber(clickedBtn)) {
-        input.value += '.';
-      }
-      } else if (buttonAction === "00") {
-        input.value *= 100;
-    } else if (buttonAction == "/") {
-      clickedActBtn = "/";
-      numberBefore = Number(input.value);
-    } else if (buttonAction == "*") {
-      clickedActBtn = "*";
-      numberBefore = Number(input.value);
-    } else if (buttonAction == "-") {
-      clickedActBtn = "-";
-      numberBefore = Number(input.value);
-    } else if (buttonAction == "+") {
-      // if(clickedActBtn != ""){
-      //    result = numberBefore + Number(input.value);
-      //    input.value = result;
-      //  }
-      clickedActBtn = "+";
-      numberBefore = Number(input.value);      
-      } else if (buttonAction == "=") {
-      if (clickedActBtn == "/") {
-        result = numberBefore / Number(input.value);
-      } else if(clickedActBtn == "*") {
-        result = numberBefore * Number(input.value);
-      } else if(clickedActBtn == "-") {
-        result = numberBefore - Number(input.value);
-      } else if(clickedActBtn == "+") {
-        result = numberBefore + Number(input.value);
-      }
-      // show the result of the calculation on the input
-      input.value = result;
-      clickedActBtn = "";
-    }
-    clickedBtn = buttonAction;
-  });
+    element.addEventListener('click', () => {
+        const buttonAction = element.dataset.action;
+        if (
+            checkIfNumber(buttonAction) ||
+            buttonAction == '/' ||
+            buttonAction == '*' ||
+            buttonAction == '-' ||
+            buttonAction == '+'
+        ) {
+            if (input.value != 0) {
+                input.value += buttonAction;
+            } else {
+                if (buttonAction == 0) {
+                    input.value = 0;
+                } else if (buttonAction == '/' || buttonAction == '*') {
+                    input.value += buttonAction;
+                } else {
+                    input.value = buttonAction;
+                }
+            }
+        } else if (buttonAction == 'ac') {
+            // clear the input
+            input.value = 0;
+        } else if (buttonAction == 'del') {
+            // delete the input value one by one
+            if (input.value.length > 1) {
+                input.value = input.value.slice(0, -1);
+            } else {
+                input.value = 0;
+            }
+        } else if (buttonAction == '%') {
+            // It works with number but when it's with actions before it like "1+5%", it shows NaN
+            input.value /= 100;
+        } else if (buttonAction == '.') {
+            if (input.value.includes('.')) {
+                return;
+            } else {
+                input.value += '.';
+            }
+        } else if (buttonAction === '00') {
+            input.value *= 100;
+        } else if (buttonAction == '=') {
+            // show the result of the calculation on the input
+            calculation = input.value;
+            result = eval(calculation);
+            input.value = result;
+        }
+    });
 });
 
 // function checking if the value of the button is the number or not
 function checkIfNumber(string) {
-  return /^[1-9]*$/.test(string);
-}
-
-function checkIfNumber0(string) {
-  return /^[0.0-9.9]*$/.test(string);
+    return /^[0-9]*$/.test(string);
 }

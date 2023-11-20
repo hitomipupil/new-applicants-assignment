@@ -16,62 +16,97 @@ body {
 
 /* Add your css  */
 
-/* How to center the contents?text-align: center; in .container doesn't work */
-/* How to make this responsive?*/
-.container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* For smartphone screen */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.display{
-  width: 180px;
-  height: 50px;
-  padding-right: 10px;
-  background-color: #555;
-  color: #fff;
-  text-align: right;
-  font-size: 20px;
-  border: none;
-  border-radius: 10px;
-  margin: 10px 0;
+.display {
+    width: 180px;
+    height: 50px;
+    padding-right: 10px;
+    background-color: #555;
+    color: #fff;
+    text-align: right;
+    font-size: 25px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px 0;
 }
 
-.buttons{
-  display: grid;
-  grid-template-columns: 45px 45px 45px 45px;
-  grid-template-rows: 45px 45px 45px 45px 45px;
-  background-color: #555;
-  border-radius: 10px;
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 45px);
+    grid-template-rows: repeat(5, 45px);
+    background-color: #555;
+    border-radius: 10px;
 }
 
-.button{
-  border-radius: 50%;
-  border: none;
-  margin: 3px;
-  font-size: 12px;
+.button {
+    border-radius: 50%;
+    border: none;
+    margin: 3px;
+    font-size: 12px;
 }
 
-[data-action="ac"],[data-action="del"],[data-action="%"]{
-  background-color: #AAA;
-  color: #000;
+[data-action='ac'],
+[data-action='del'],
+[data-action='%'] {
+    background-color: #aaa;
+    color: #000;
 }
 
-[data-action="/"],[data-action="*"],[data-action="-"],[data-action="+"]{
-  background-color: #FFA500;
-  color: #fff;
+[data-action='/'],
+[data-action='*'],
+[data-action='-'],
+[data-action='+'] {
+    background-color: #ffa500;
+    color: #fff;
 }
 
-[data-action="="]{
-  background-color: #FFA500;
-  color: #fff;
+[data-action='='] {
+    background-color: #ffa500;
+    color: #fff;
 }
 
-[data-action="="]:hover{
-  background-color: #fff;
-  color: #FFA500;
+[data-action='/']:hover,
+[data-action='*']:hover,
+[data-action='-']:hover,
+[data-action='+']:hover,
+[data-action='=']:hover {
+    background-color: #fff;
+    color: #ffa500;
 }
 
+/* For PC screen */
 @media (min-width: 992px) {
-  
+    .display {
+        width: 280px;
+        height: 70px;
+        padding-right: 10px;
+        background-color: #555;
+        color: #fff;
+        text-align: right;
+        font-size: 40px;
+        border: none;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 70px);
+        grid-template-rows: repeat(5, 70px);
+        background-color: #555;
+        border-radius: 10px;
+    }
+
+    .button {
+        border-radius: 50%;
+        border: none;
+        margin: 3px;
+        font-size: 20px;
+    }
 }
