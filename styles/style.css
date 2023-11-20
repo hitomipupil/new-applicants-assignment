@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+/* Add your css  */
+
+/* How to center the contents?text-align: center; in .container doesn't work */
+/* How to make this responsive?*/
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display{
+  width: 180px;
+  height: 50px;
+  padding-right: 10px;
+  background-color: #555;
+  color: #fff;
+  text-align: right;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.buttons{
+  display: grid;
+  grid-template-columns: 45px 45px 45px 45px;
+  grid-template-rows: 45px 45px 45px 45px 45px;
+  background-color: #555;
+  border-radius: 10px;
+}
+
+.button{
+  border-radius: 50%;
+  border: none;
+  margin: 3px;
+  font-size: 12px;
+}
+
+[data-action="ac"],[data-action="del"],[data-action="%"]{
+  background-color: #AAA;
+  color: #000;
+}
+
+[data-action="/"],[data-action="*"],[data-action="-"],[data-action="+"]{
+  background-color: #FFA500;
+  color: #fff;
+}
+
+[data-action="="]{
+  background-color: #FFA500;
+  color: #fff;
+}
+
+[data-action="="]:hover{
+  background-color: #fff;
+  color: #FFA500;
+}
+
+@media (min-width: 992px) {
+  
+}
